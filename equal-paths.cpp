@@ -3,6 +3,7 @@
 
 #endif
 
+#include <algorithm>
 #include "equal-paths.h"
 using namespace std;
 
@@ -12,7 +13,19 @@ using namespace std;
 
 bool equalPaths(Node * root)
 {
-    // Add your code below
+    if(root == nullptr) return true;
+    return (treeLength(root->right) == treeLength(root->left)) && equalPaths(root->left) && equalPaths(root->right);
 
+}
+
+
+// find tree length from root to a given node
+int treeLength(Node* node){
+    if(node == nullptr){
+        return 0;
+    }
+    else{
+        return 1 + max(treeLength(node->left), treeLength(node->right));
+    }
 }
 
