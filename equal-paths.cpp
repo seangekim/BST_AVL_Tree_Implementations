@@ -14,8 +14,15 @@ using namespace std;
 bool equalPaths(Node * root)
 {
     if(root == nullptr) return true;
-    return (treeLength(root->right) == treeLength(root->left)) && equalPaths(root->left) && equalPaths(root->right);
-
+    if(root->left != nullptr && root->right != nullptr){
+        return (treeLength(root->right) == treeLength(root->left)) && equalPaths(root->left) && equalPaths(root->right);
+    }
+    else if(root->left == nullptr){
+        return (equalPaths(root->right));
+    }
+    else if(root->right == nullptr){
+        return (equalPaths(root->left));
+    }
 }
 
 
