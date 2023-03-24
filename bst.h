@@ -551,18 +551,15 @@ void BinarySearchTree<Key, Value>::remove(const Key& key)
     }
     // node has one children
     else{
-        // set temp to garbage value, temp will end up storing child of curr 
-        Node<Key, Value>* temp = curr;
-        bool isLeftChild;
+        // set temp to garbage value
+        Node<Key, Value>* temp = nullptr;
         // if left node is null, set temp to right node
         if(curr->getLeft() == nullptr){
             temp = curr->getRight();
-            isLeftChild = false;
         }
         // else, right node is null, set temp to left node
         else{
             temp = curr->getLeft();
-            isLeftChild = true;
         }
         // if curr is root node, promote node and delete. 
         if(curr->getParent() == nullptr){
@@ -573,17 +570,17 @@ void BinarySearchTree<Key, Value>::remove(const Key& key)
         }
         // else, node is non root node
         else{
-            // set parent of temp ptr to point to parent of curr
-            temp->setParent(curr->getParent());
-            // if left child
-            if(isLeftChild){
+            temp->setParent(curr->getParent())
+            // if curr is a left node
+            if(curr->getParent()->getLeft() == curr){  
                 curr->getParent()->setLeft(temp);
             }
-            // else, is a right child
+            // else curr is a right node
             else{
                 curr->getParent()->setRight(temp);
             }
             delete curr;
+            return;
         }   
     }
 }
