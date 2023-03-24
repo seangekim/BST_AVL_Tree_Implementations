@@ -619,7 +619,7 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::successor(Node<Key, Value>* curr
     // if right child doesnt exist, walk up ancestor chain until a left child is found, then that parent is the pred
     if(current->getRight() == nullptr){
         // loop until current is the parent of a left node. 
-        while(current->getParent() != nullptr && current->getParent()->getLeft() != current){
+        while(current->getParent() != nullptr && current->getParent()->getRight() == current){
             current = current->getParent();
         }
     }
