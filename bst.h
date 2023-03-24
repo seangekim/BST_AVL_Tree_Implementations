@@ -249,7 +249,7 @@ protected:
 
     // Add helper functions here
     int getHeight(Node<Key,Value>* root) const;
-	bool balanceHelper(Node<Key, Value>* node) const; 
+	  bool balanceHelper(Node<Key, Value>* node) const; 
     static Node<Key, Value>* successor(Node<Key, Value>* current);
 
 
@@ -340,7 +340,29 @@ template<class Key, class Value>
 typename BinarySearchTree<Key, Value>::iterator&
 BinarySearchTree<Key, Value>::iterator::operator++()
 {
-    current_ = successor(current_);
+    Node<Key, Value>* temp = nullptr;
+    // if right of current is valid, go right
+    if(current_->getRight() != nullptr){
+      temp = current_->getRight();
+      // loop until left most node is found
+      while(temp->getLeft() != nullptr){
+        temp = temp->getLeft();
+      }
+      this->current_ = temp;
+      return *this;
+    }
+    else{
+      temp = current_;
+      //loop until parent is null
+      while(temp->getParent() != nullptr){
+        if(temp == temp->getParent()->getLeft()){
+          this->current_ = temp->getParent();
+          return *this;
+        }
+        temp = temp->getParent();
+      }
+    }
+    current_ = nullptr;
     return *this;
 }
 
@@ -618,7 +640,8 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::successor(Node<Key, Value>* curr
     // next biggest value in the tree
     // if right child doesnt exist, walk up ancestor chain until a left child is found, then that parent is the pred
     if(current->getRight() == nullptr){
-        // loop until current is the parent of a left node. 
+        // loop until current is the parent of a left node
+        current = current->getParent(); 
         while(current->getParent() != nullptr && current->getParent()->getRight() == current){
             current = current->getParent();
         }
@@ -657,7 +680,10 @@ template<typename Key, typename Value>
 Node<Key, Value>*
 BinarySearchTree<Key, Value>::getSmallestNode() const
 {
-    Node<Key, Value>* temp = this->root_;
+    Node<Key, Value>* temp = root_;
+    if(root_ == nullptr){
+      return nullptr;
+    }
     // while another left node exists, go to that node
     while(temp->getLeft() != nullptr){
         temp = temp->getLeft();
