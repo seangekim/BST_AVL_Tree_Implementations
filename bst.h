@@ -458,7 +458,7 @@ template<class Key, class Value>
 void BinarySearchTree<Key, Value>::insert(const std::pair<const Key, Value> &keyValuePair)
 {
     // if tree is empty, insert node at top
-    if(this->empty){
+    if(this->empty()){
         Node<Key, Value>* initialNode = new Node<Key, Value>(keyValuePair.first, keyValuePair.second, NULL);
         root_ = initialNode;
     }
@@ -474,23 +474,23 @@ void BinarySearchTree<Key, Value>::insert(const std::pair<const Key, Value> &key
         // while loop to loop through until temp becomes nullptr
         while(temp != nullptr){
             // if greater than root_, move right
-            if(temp->getKey < keyValuePair.first){
+            if(temp->getKey() < keyValuePair.first){
                 temp = temp->getRight();
             }
             // else move left
-            else if(temp->getKey > keyValuePair.first){
+            else if(temp->getKey() > keyValuePair.first){
                 temp = temp->getLeft();
             }
         }
         
-        Node<Key, Value>* addedNode = new Node<Key, Value>(keyValuePair.first, keyValuePair.second, temp->getParent);
-        temp = temp->getParent;
+        Node<Key, Value>* addedNode = new Node<Key, Value>(keyValuePair.first, keyValuePair.second, temp->getParent());
+        temp = temp->getParent();
 
         // connecting parent node ptr to addedNode
-        if(temp->getKey < keyValuePair.first){
+        if(temp->getKey() < keyValuePair.first){
             temp->setRight(addedNode);
         }
-        else(temp->getKey > keyValuePair.first){
+        else(temp->getKey() > keyValuePair.first){
             temp->setLeft(addedNode);
         }
 
@@ -599,7 +599,7 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::predecessor(Node<Key, Value>* cu
         Node<Key, Value>* par_curr = current->getParent();
         // loop until par_curr is the parent of a right node. 
         while(par_curr->getRight() != current){
-            current = par_current;
+            current = par_curr;
             par_curr = par_curr->getParent();
         }
         return par_curr;
@@ -621,11 +621,11 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::successor(Node<Key, Value>* curr
     Node<Key, Value>* temp = current;
     // if right child doesnt exist, walk up ancestor chain until a left child is found, then that parent is the pred
     if(current->getRight() == nullptr){
-        Node<Key, Value>* par_curr = current->getParent;
+        Node<Key, Value>* par_curr = current->getParent();
         // loop until par_curr is the parent of a left node. 
         while(par_curr->getLeft() != current){
-            current = par_current;
-            par_curr = par_curr->getParent;
+            current = par_curr;
+            par_curr = par_curr->getParent();
         }
         return par_curr;
     }
