@@ -624,23 +624,20 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::successor(Node<Key, Value>* curr
     Node<Key, Value>* temp = current;
     // if right child doesnt exist, walk up ancestor chain until a left child is found, then that parent is the pred
     if(temp->getRight() == nullptr){
-        Node<Key, Value>* par_curr = temp->getParent();
-        // loop until par_curr is the parent of a left node. 
-        while(par_curr->getLeft() != temp){
-            temp = par_curr;
-            par_curr = par_curr->getParent();
+        // loop until current is the parent of a left node. 
+        while(temp->getParent() != nullptr && temp->getParent()->getLeft() != temp){
+            temp = temp->getParent();
         }
-        return par_curr;
     }
     // right child exists, find left most node
-    else{
+    else if(temp->getRight() != nullptr){
         temp = temp->getRight();
         // loop until temp becomes left most child
         while(temp->getLeft() != nullptr){
             temp = temp->getLeft();
         }
-        return temp;
     }
+    return temp;
 }
 
 
