@@ -686,7 +686,7 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::internalFind(const Key& key) con
     Node<Key, Value>* temp = this->root_;
     // while temp is not nullptr
     while(temp != nullptr){
-        std::cout << "HERE" << endl;
+        std::cout << "HERE" << std::endl;
         // if key is leaf node, then value was not found, return nullptr
         if(temp->getKey() == key){
             return temp;
