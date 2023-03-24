@@ -470,9 +470,12 @@ void BinarySearchTree<Key, Value>::insert(const std::pair<const Key, Value> &key
     // walk down tree until find place to insert
     else{
         Node<Key, Value>* temp = root_;
+        // parent of temp
+        Node<Key, Value>* tempParent = nullptr;
         // while loop to loop through until temp becomes nullptr
         while(temp != nullptr){
             // if greater than root_, move right
+            tempParent = temp;
             if(temp->getKey() < keyValuePair.first){
                 temp = temp->getRight();
             }
@@ -480,17 +483,18 @@ void BinarySearchTree<Key, Value>::insert(const std::pair<const Key, Value> &key
             else if(temp->getKey() > keyValuePair.first){
                 temp = temp->getLeft();
             }
+            
+
         }
         
-        Node<Key, Value>* addedNode = new Node<Key, Value>(keyValuePair.first, keyValuePair.second, temp->getParent());
-        temp = temp->getParent();
+        Node<Key, Value>* addedNode = new Node<Key, Value>(keyValuePair.first, keyValuePair.second, tempParent);
 
         // connecting parent node ptr to addedNode
-        if(temp->getKey() < keyValuePair.first){
-            temp->setRight(addedNode);
+        if(tempParent->getKey() < keyValuePair.first){
+            tempParent->setRight(addedNode);
         }
-        else if(temp->getKey() > keyValuePair.first){
-            temp->setLeft(addedNode);
+        else if(tempParent->getKey() > keyValuePair.first){
+            tempParent->setLeft(addedNode);
         }
 
     }
