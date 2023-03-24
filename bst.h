@@ -556,12 +556,12 @@ void BinarySearchTree<Key, Value>::remove(const Key& key)
         bool isLeftChild;
         // if left node is null, set temp to right node
         if(curr->getLeft() == nullptr){
-            Node<Key, Value>* temp = curr->getRight();
+            temp = curr->getRight();
             isLeftChild = false;
         }
         // else, right node is null, set temp to left node
         else{
-            Node<Key, Value>* temp = curr->getLeft();
+            temp = curr->getLeft();
             isLeftChild = true;
         }
         // if curr is root node, promote node and delete. 
@@ -714,7 +714,7 @@ template<typename Key, typename Value>
 bool BinarySearchTree<Key, Value>::isBalanced() const
 {
     // call helper function
-    balanceHelper(root_);
+    return balanceHelper(root_);
 
 }
 
