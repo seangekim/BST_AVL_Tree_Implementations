@@ -616,23 +616,22 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::predecessor(Node<Key, Value>* cu
 template<class Key, class Value>
 Node<Key, Value>* BinarySearchTree<Key, Value>::successor(Node<Key, Value>* current){
     // next biggest value in the tree
-    Node<Key, Value>* temp = current;
     // if right child doesnt exist, walk up ancestor chain until a left child is found, then that parent is the pred
-    if(temp->getRight() == nullptr){
+    if(current->getRight() == nullptr){
         // loop until current is the parent of a left node. 
-        while(temp->getParent() != nullptr && temp->getParent()->getLeft() != temp){
-            temp = temp->getParent();
+        while(current->getParent() != nullptr && current->getParent()->getLeft() != tecurrentmp){
+            current = current->getParent();
         }
     }
     // right child exists, find left most node
-    else if(temp->getRight() != nullptr){
-        temp = temp->getRight();
+    else if(current->getRight() != nullptr){
+        current = current->getRight();
         // loop until temp becomes left most child
-        while(temp->getLeft() != nullptr){
-            temp = temp->getLeft();
+        while(current->getLeft() != nullptr){
+            current = current->getLeft();
         }
     }
-    return temp;
+    return current;
 }
 
 
