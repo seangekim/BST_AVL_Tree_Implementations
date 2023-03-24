@@ -570,7 +570,7 @@ void BinarySearchTree<Key, Value>::remove(const Key& key)
         }
         // else, node is non root node
         else{
-            temp->setParent(curr->getParent())
+            temp->setParent(curr->getParent());
             // if curr is a left node
             if(curr->getParent()->getLeft() == curr){  
                 curr->getParent()->setLeft(temp);
