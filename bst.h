@@ -490,7 +490,7 @@ void BinarySearchTree<Key, Value>::insert(const std::pair<const Key, Value> &key
         if(temp->getKey() < keyValuePair.first){
             temp->setRight(addedNode);
         }
-        else(temp->getKey() > keyValuePair.first){
+        else if(temp->getKey() > keyValuePair.first){
             temp->setLeft(addedNode);
         }
 
@@ -693,7 +693,7 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::internalFind(const Key& key) con
     // while key does not equal temp
     while(key != temp->getKey()){
         // if key is leaf node, then value was not found, return nullptr
-        if(temp->isLeaf()){
+        if(isLeaf(temp)){
             return nullptr;
         }
         // if key is greater than value at temp, go right 
