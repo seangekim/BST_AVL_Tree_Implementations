@@ -688,11 +688,11 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::internalFind(const Key& key) con
 {
     // TODO
     Node<Key, Value>* temp = this->root_;
-    // while key does not equal temp
-    while(key != temp->getKey()){
+    // while temp is not nullptr
+    while(temp != nullptr){
         // if key is leaf node, then value was not found, return nullptr
-        if(temp->getRight() == nullptr && temp->getLeft() == nullptr){
-            return nullptr;
+        if(temp->getKey() == key){
+            return temp;
         }
         // if key is greater than value at temp, go right 
         if(key > temp->getKey()){
@@ -703,8 +703,7 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::internalFind(const Key& key) con
             temp = temp->getLeft();
         }
     }
-    // if it makes it out of while loop, key == temp->getKey
-    return temp;
+    return nullptr;
 }
 
 /**
