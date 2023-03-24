@@ -598,11 +598,11 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::predecessor(Node<Key, Value>* cu
     // next smallest value in the tree
     Node<Key, Value>* temp = current;
     // if left child doesnt exist, walk up ancestor chain until a right child is found, then that parent is the pred
-    if(current->getLeft() == nullptr){
-        Node<Key, Value>* par_curr = current->getParent();
+    if(temp->getLeft() == nullptr){
+        Node<Key, Value>* par_curr = temp->getParent();
         // loop until par_curr is the parent of a right node. 
-        while(par_curr->getRight() != current){
-            current = par_curr;
+        while(par_curr->getRight() != temp){
+            temp = par_curr;
             par_curr = par_curr->getParent();
         }
         return par_curr;
@@ -623,11 +623,11 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::successor(Node<Key, Value>* curr
     // next biggest value in the tree
     Node<Key, Value>* temp = current;
     // if right child doesnt exist, walk up ancestor chain until a left child is found, then that parent is the pred
-    if(current->getRight() == nullptr){
-        Node<Key, Value>* par_curr = current->getParent();
+    if(temp->getRight() == nullptr){
+        Node<Key, Value>* par_curr = temp->getParent();
         // loop until par_curr is the parent of a left node. 
-        while(par_curr->getLeft() != current){
-            current = par_curr;
+        while(par_curr->getLeft() != temp){
+            temp = par_curr;
             par_curr = par_curr->getParent();
         }
         return par_curr;
