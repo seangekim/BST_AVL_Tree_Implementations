@@ -621,7 +621,7 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::successor(Node<Key, Value>* curr
         // loop until current is the parent of a left node. 
         while(current->getParent() != nullptr && current->getParent()->getRight() == current){
             current = current->getParent();
-            cout << "stuck 1" << endl;
+            std::cout << "stuck 1" << std::endl;
         }
     }
     // right child exists, find left most node
@@ -630,7 +630,7 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::successor(Node<Key, Value>* curr
         // loop until temp becomes left most child
         while(current->getLeft() != nullptr){
             current = current->getLeft();
-            cout << "stuck 2 " << endl;
+            std::cout << "stuck 2 " << std::endl;
         }
     }
     return current;
