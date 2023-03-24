@@ -248,7 +248,6 @@ protected:
 
 
     // Add helper functions here
-    bool isLeaf(Node<Key,Value>* node);
     int getHeight(Node<Key,Value>* root) const;
 	bool balanceHelper(Node<Key, Value>* node) const; 
     static Node<Key, Value>* successor(Node<Key, Value>* current);
@@ -693,7 +692,7 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::internalFind(const Key& key) con
     // while key does not equal temp
     while(key != temp->getKey()){
         // if key is leaf node, then value was not found, return nullptr
-        if(isLeaf(temp)){
+        if(temp->getRight() == nullptr && node->getLeft() == nullptr){
             return nullptr;
         }
         // if key is greater than value at temp, go right 
@@ -749,13 +748,7 @@ bool BinarySearchTree<Key, Value>::balanceHelper(Node<Key, Value>* node) const {
 }
 
 
-template<typename Key, typename Value>
-bool BinarySearchTree<Key, Value>::isLeaf(Node<Key,Value>* node){
-    if(node->getRight() == nullptr && node->getLeft() == nullptr){
-        return true;
-    }
-    return false;
-}
+
 
 
 
