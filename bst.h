@@ -650,7 +650,7 @@ void BinarySearchTree<Key, Value>::clear()
 {
     // while not empty, call remove func
     while(!this->empty()){
-        remove->(root_->getKey());
+        remove(root_->getKey());
     }
 }
 
@@ -692,7 +692,7 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::internalFind(const Key& key) con
     // while key does not equal temp
     while(key != temp->getKey()){
         // if key is leaf node, then value was not found, return nullptr
-        if(temp->getRight() == nullptr && node->getLeft() == nullptr){
+        if(temp->getRight() == nullptr && temp->getLeft() == nullptr){
             return nullptr;
         }
         // if key is greater than value at temp, go right 
