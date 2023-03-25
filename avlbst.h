@@ -323,17 +323,7 @@ void AVLTree<Key, Value>::rotateRight(AVLNode<Key,Value>* node){
     std::cout << "A???" << std::endl;
 
     bool isLeftNode;
-    if(parent == nullptr){
-      std::cout << "shitt" << std::endl;
-
-    }
-    if(parent->getLeft() == node){
-        isLeftNode = true;
-    }
-    else{
-        isLeftNode = false;
-    }
-
+    
 
     // check for right child existence 
     AVLNode<Key,Value>* rightChild = nullptr;
@@ -354,6 +344,12 @@ void AVLTree<Key, Value>::rotateRight(AVLNode<Key,Value>* node){
 
     // else,rotate accordingly
     else{
+        if(parent->getLeft() == node){
+            isLeftNode = true;
+        }
+        else{
+            isLeftNode = false;
+        }
 
         // if node is right child
         if(isLeftNode){
