@@ -320,9 +320,6 @@ void AVLTree<Key, Value>::rotateRight(AVLNode<Key,Value>* node){
     AVLNode<Key,Value>* leftChild = node->getLeft();
 
     bool isLeftNode;
-    if(parent == nullptr){
-        std::cout << "NOOOOO" << std::endl;
-    }
     if(parent->getLeft() == node){
         isLeftNode = true;
     }
