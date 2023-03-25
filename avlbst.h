@@ -178,6 +178,7 @@ void AVLTree<Key, Value>::insert (const std::pair<const Key, Value> &new_item)
             }
             // else, move left
             else{
+                std::cout << "Makes it here 1" << std::endl;
                 temp = temp->getLeft();
             }
         }
@@ -185,6 +186,7 @@ void AVLTree<Key, Value>::insert (const std::pair<const Key, Value> &new_item)
         addedNode->setBalance(0);
         // if temp has balance of -1 or 1, set balance to 0
         if(tempParent->getBalance() == -1 || tempParent->getBalance() == 1){
+            std::cout << "Makes it here 2" << std::endl;
             tempParent->setBalance(0);
         }
         // else, temp balance is 0 
