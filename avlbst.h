@@ -636,7 +636,7 @@ void AVLTree<Key, Value>::removeFix(AVLNode<Key,Value>* node, int diff) {
             return;
         }
         // case 1a
-        if(child->getBalance() == 1){
+        if(child->getBalance() == 1){         
             rotateLeft(node);
             node->setBalance(0);
             child->setBalance(0);
