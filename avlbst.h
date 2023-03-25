@@ -161,14 +161,14 @@ void AVLTree<Key, Value>::insert (const std::pair<const Key, Value> &new_item)
         initialNode->setBalance(0);
     }
     // if key already exists in tree, override current value
-    else if(static_cast<AVLNode<Key, Value>*>(this->internalFind(new_item.first) != nullptr)){
+    else if(static_cast<AVLNode<Key, Value>*>(this->internalFind(new_item.first)) != nullptr){
         AVLNode<Key, Value> *changedNode = static_cast<AVLNode<Key, Value>*>(this->internalFind(new_item.first));
         changedNode->setValue(new_item.second);
     }
 
     // otherwise, walk down tree, find place to insert
     else{
-        AVLNode<Key, Value>* temp = this->root_;
+        AVLNode<Key, Value>* temp = static_cast<AVLNode<Key, Value>*>this->root_;
         AVLNode<Key, Value>* tempParent = nullptr;
         while(temp != nullptr){
             // if greater than root_, move right
@@ -465,7 +465,7 @@ void AVLTree<Key, Value>:: remove(const Key& key)
         AVLNode<Key, Value> *node = static_cast<AVLNode<Key, Value>*>(this->internalFind(key));
         // if two children exist, swap with pred
         if(node->getLeft() != nullptr && node->getRight() != nullptr){
-            AVLNode<Key,Value>* temp = static_cast<AVLNode<Key, Value>*>(this->predecessor());
+            AVLNode<Key,Value>* temp = static_cast<AVLNode<Key, Value>*>(this->predecessor(removed));
             nodeSwap(temp, removed);
         }
 
