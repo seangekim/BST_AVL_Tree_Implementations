@@ -573,8 +573,9 @@ void AVLTree<Key, Value>:: remove(const Key& key)
                     delete removed;
                 }
             }
-            removeFix(parent, diff);
         }
+        removeFix(parent, diff);
+
     }
 }
 
