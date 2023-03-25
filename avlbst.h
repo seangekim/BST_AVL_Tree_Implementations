@@ -192,12 +192,12 @@ void AVLTree<Key, Value>::insert (const std::pair<const Key, Value> &new_item)
             // connecting parent node ptr to added node (right)
             if(tempParent->getKey() < new_item.first){
                 tempParent->setRight(addedNode);
-                tempParent->setBalance(1);
+                tempParent->setBalance(tempParent->getBalance()+1);
             }
             // connecting parent node ptr to added node (left)
             else{
                 tempParent->setLeft(addedNode);
-                tempParent->setBalance(-1);
+                tempParent->setBalance(tempParent->getBalance()-1);
             }
             // std::cout << "FUCK FUCK FUCK" << std::endl;
             insertFix(tempParent, addedNode);
