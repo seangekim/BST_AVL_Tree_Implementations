@@ -334,7 +334,7 @@ void AVLTree<Key, Value>::rotateRight(AVLNode<Key,Value>* node){
     }
 
     // if node is root, rotate accordingly
-    if(this->root_ == node->getParent()){
+    if(parent == nullptr){
 
         this->root_ = leftChild;
         node->setParent(leftChild);
