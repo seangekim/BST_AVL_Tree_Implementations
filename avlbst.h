@@ -242,9 +242,6 @@ void AVLTree<Key, Value>:: insertFix(AVLNode<Key,Value>* parent, AVLNode<Key,Val
         if(zigZig(node, parent, grand)){
             // if left child, rotateRight grand
             if(pLeftofG){
-                if(grand == nullptr){
-                    std::cout << "Sheesh" << std::endl;
-                }
                 rotateRight(grand);
             }
             // else, is right child, rotateLeft grand
@@ -432,11 +429,11 @@ void AVLTree<Key, Value>::rotateLeft(AVLNode<Key,Value>* node){
 template<class Key, class Value>
 bool AVLTree<Key, Value>::zigZig(AVLNode<Key,Value>* n, AVLNode<Key,Value>* p, AVLNode<Key,Value>* g){
     // left of left case
-    if(g->getLeft() == p && p->getLeft() == n){
+    if(g->getLeft() == p && p->getLeft() == n && p != nullptr && g != nullptr && n != nullptr){
         return true;
     }
     // right of right case
-    if(g->getRight() == p && p->getRight() == n){
+    if(g->getRight() == p && p->getRight() == n && p != nullptr && g != nullptr && n != nullptr){
         return true;
     }
     return false;
