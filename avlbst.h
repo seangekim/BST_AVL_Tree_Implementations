@@ -383,6 +383,9 @@ void AVLTree<Key, Value>::rotateLeft(AVLNode<Key,Value>* node){
 
     // check for left child existence 
     AVLNode<Key,Value>* leftChild = nullptr;
+    if(rightChild == nullptr){
+        std::cout << "Oh shit " << std::endl;
+    }
     if(rightChild->getLeft() != nullptr){
         // store left child
         leftChild = rightChild->getLeft();
