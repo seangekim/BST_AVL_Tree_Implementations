@@ -481,13 +481,7 @@ void AVLTree<Key, Value>:: remove(const Key& key)
         int diff = 0; 
         AVLNode<Key,Value>* parent = removed->getParent();
 
-        bool removedIsLeft;
-        if(parent->getLeft() == removed){
-            removedIsLeft = true;
-        }
-        else{
-            removedIsLeft = false;
-        }
+        
 
         // if parent exists
         if(parent != nullptr){
@@ -509,13 +503,13 @@ void AVLTree<Key, Value>:: remove(const Key& key)
             }
 
             // removed is a left node
-            else if(removedIsLeft){
+            else if(parent->getLeft() == removed){
                 parent->setLeft(nullptr);
                 delete removed;
 
             }
             // removed is a right node
-            else if(!removedIsLeft){
+            else if(parent->getLeft() != removed){
                 parent->setRight(nullptr);
                 delete removed;
             }
