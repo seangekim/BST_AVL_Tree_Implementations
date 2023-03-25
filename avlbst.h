@@ -223,11 +223,11 @@ void AVLTree<Key, Value>:: insertFix(AVLNode<Key,Value>* parent, AVLNode<Key,Val
     }
     // update grands balance to new value depending on if left or right child
     if(pLeftofG){
-        grand->updateBalance(grand->getBalance()-1);
+        grand->setBalance(grand->getBalance()-1);
     }
     // else, is right child, and update accordingly. 
     else{
-        grand->updateBalance(grand->getBalance()+1);
+        grand->setBalance(grand->getBalance()+1);
     }
     // if balance of grand is zero, return
     if(grand->getBalance() == 0){
