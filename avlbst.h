@@ -531,16 +531,7 @@ void AVLTree<Key, Value>:: remove(const Key& key)
         // node has single children
         else{
             AVLNode<Key, Value>* child = nullptr;
-            bool childIsLeft;
-            // if statement to make child ptr 
-            if(removed->getRight() == nullptr){
-                child = removed->getLeft();
-                childIsLeft = true;
-            }
-            else{
-                child = removed->getRight();
-                childIsLeft = false;
-            }
+            
 
             // root case
             if(parent == nullptr){
@@ -550,15 +541,14 @@ void AVLTree<Key, Value>:: remove(const Key& key)
             }
             else{
                 // has left child
-                if(childIsLeft){
+                if(removed->getRight() == nullptr){
                     if(parent->getLeft() == removed){
                         parent->setLeft(child);
                     }
                     else{
                         parent->setRight(child);
                     }
-                    child->setParent(parent);
-                    delete removed;
+                    
                 }
                 
                 // has right child
@@ -569,9 +559,10 @@ void AVLTree<Key, Value>:: remove(const Key& key)
                     else{
                         parent->setLeft(child);
                     }
-                    child->setParent(parent);
-                    delete removed;
+                   
                 }
+                child->setParent(parent);
+                delete removed;
             }
         }
         removeFix(parent, diff);
