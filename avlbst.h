@@ -243,11 +243,11 @@ void AVLTree<Key, Value>:: insertFix(AVLNode<Key,Value>* parent, AVLNode<Key,Val
         if(zigZig(node, parent, grand)){
             // if left child, rotateRight grand
             if(pLeftofG){
-                rotateRight(grand);
+                rotateRight(parent);
             }
             // else, is right child, rotateLeft grand
             else{
-                rotateLeft(grand);
+                rotateLeft(parent);
             }
             // set grand balance and parent balance to 0
             parent->setBalance(0);
