@@ -200,7 +200,7 @@ void AVLTree<Key, Value>::insert (const std::pair<const Key, Value> &new_item)
                 tempParent->setBalance(tempParent->getBalance()-1);
             }
             // std::cout << "FUCK FUCK FUCK" << std::endl;
-            insertFix(tempParent, addedNode);
+            insertFix(addedNode->getParent(), addedNode);
         }
     }
 }
