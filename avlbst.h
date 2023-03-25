@@ -221,11 +221,11 @@ void AVLTree<Key, Value>:: insertFix(AVLNode<Key,Value>* parent, AVLNode<Key,Val
     }
     // update grands balance to new value depending on if left or right child
     if(pLeftofG){
-        grand->updateBalance(grand->getBalance()-1)
+        grand->updateBalance(grand->getBalance()-1);
     }
     // else, is right child, and update accordingly. 
     else{
-        grand->updateBalance(grand->getBalance()+1)
+        grand->updateBalance(grand->getBalance()+1);
     }
     // if balance of grand is zero, return
     if(grand->getBalance() == 0){
@@ -362,7 +362,7 @@ void AVLTree<Key, Value>::rotateRight(AVLNode<Key,Value>* node){
     // if left child exists
     else{
         node->setLeft(rightChild);
-        temp->setParent(node);
+        rightChild->setParent(node);
     }
 }
 
@@ -417,7 +417,7 @@ void AVLTree<Key, Value>::rotateLeft(AVLNode<Key,Value>* node){
     // if right child exists
     else{
         node->setRight(leftChild);
-        temp->setParent(node);
+        leftChild->setParent(node);
     }
 }
 
