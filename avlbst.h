@@ -168,7 +168,7 @@ void AVLTree<Key, Value>::insert (const std::pair<const Key, Value> &new_item)
 
     // otherwise, walk down tree, find place to insert
     else{
-        AVLNode<Key, Value>* temp = static_cast<AVLNode<Key, Value>*>this->root_;
+        AVLNode<Key, Value>* temp = static_cast<AVLNode<Key, Value>*>(this->root_);
         AVLNode<Key, Value>* tempParent = nullptr;
         while(temp != nullptr){
             // if greater than root_, move right
@@ -589,7 +589,7 @@ void AVLTree<Key, Value>::removeFix(AVLNode<Key,Value>* node, int diff) {
             return;
         }
         // case 1a
-        if(child->getBalance == -1){
+        if(child->getBalance() == -1){
             rotateRight(node);
             node->setBalance(0);
             child->setBalance(0);
@@ -636,7 +636,7 @@ void AVLTree<Key, Value>::removeFix(AVLNode<Key,Value>* node, int diff) {
             return;
         }
         // case 1a
-        if(child->getBalance == 1){
+        if(child->getBalance() == 1){
             rotateLeft(node);
             node->setBalance(0);
             child->setBalance(0);
