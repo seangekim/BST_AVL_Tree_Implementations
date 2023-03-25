@@ -199,6 +199,7 @@ void AVLTree<Key, Value>::insert (const std::pair<const Key, Value> &new_item)
                 tempParent->setLeft(addedNode);
                 tempParent->setBalance(-1);
             }
+            std::cout << "FUCK FUCK FUCK" << std::endl;
             insertFix(tempParent, temp);
         }
     }
