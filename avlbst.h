@@ -243,11 +243,13 @@ void AVLTree<Key, Value>:: insertFix(AVLNode<Key,Value>* parent, AVLNode<Key,Val
         if(zigZig(node, parent, grand)){
             // if left child, rotateRight grand
             if(pLeftofG){
-                rotateRight(parent);
+                std::cout << "rotate right" << std::endl;
+                rotateRight(grand);
             }
             // else, is right child, rotateLeft grand
             else{
-                rotateLeft(parent);
+                std::cout << "rotate left" << std::endl;
+                rotateLeft(grand);
             }
             // set grand balance and parent balance to 0
             parent->setBalance(0);
@@ -318,8 +320,13 @@ template<class Key, class Value>
 void AVLTree<Key, Value>::rotateRight(AVLNode<Key,Value>* node){
     AVLNode<Key,Value>* parent = node->getParent();
     AVLNode<Key,Value>* leftChild = node->getLeft();
+    std::cout << "A???" << std::endl;
 
     bool isLeftNode;
+    if(parent == nullptr){
+      std::cout << "shitt" << std::endl;
+
+    }
     if(parent->getLeft() == node){
         isLeftNode = true;
     }
@@ -335,16 +342,19 @@ void AVLTree<Key, Value>::rotateRight(AVLNode<Key,Value>* node){
         rightChild = leftChild->getRight();
         leftChild->setRight(nullptr);
     }
+
     // if node is root, rotate accordingly
     if(this->root_ == node->getParent()){
+
         this->root_ = leftChild;
         node->setParent(leftChild);
         leftChild->setRight(node);
         leftChild->setParent(nullptr);
-        leftChild->setLeft()
     }
+
     // else,rotate accordingly
     else{
+
         // if node is right child
         if(isLeftNode){
             parent->setLeft(leftChild);
