@@ -242,6 +242,9 @@ void AVLTree<Key, Value>:: insertFix(AVLNode<Key,Value>* parent, AVLNode<Key,Val
         if(zigZig(node, parent, grand)){
             // if left child, rotateRight grand
             if(pLeftofG){
+                if(grand == nullptr){
+                    std::cout << "Sheesh" << std::endl;
+                }
                 rotateRight(grand);
             }
             // else, is right child, rotateLeft grand
