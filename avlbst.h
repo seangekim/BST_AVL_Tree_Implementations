@@ -199,8 +199,8 @@ void AVLTree<Key, Value>::insert (const std::pair<const Key, Value> &new_item)
                 tempParent->setLeft(addedNode);
                 tempParent->setBalance(-1);
             }
-            std::cout << "FUCK FUCK FUCK" << std::endl;
-            insertFix(tempParent, temp);
+            // std::cout << "FUCK FUCK FUCK" << std::endl;
+            insertFix(tempParent, addedNode);
         }
     }
 }
@@ -385,7 +385,7 @@ void AVLTree<Key, Value>::rotateLeft(AVLNode<Key,Value>* node){
     // check for left child existence 
     AVLNode<Key,Value>* leftChild = nullptr;
     if(rightChild == nullptr){
-        std::cout << "Oh shit " << std::endl;
+        // std::cout << "Oh shit " << std::endl;
     }
     if(rightChild->getLeft() != nullptr){
         // store left child
