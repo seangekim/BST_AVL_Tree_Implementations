@@ -178,7 +178,7 @@ void AVLTree<Key, Value>::insert (const std::pair<const Key, Value> &new_item)
             }
             // else, move left
             else{
-                std::cout << "Makes it here 1" << std::endl;
+                // std::cout << "Makes it here 1" << std::endl;
                 temp = temp->getLeft();
             }
         }
@@ -195,7 +195,7 @@ void AVLTree<Key, Value>::insert (const std::pair<const Key, Value> &new_item)
                 tempParent->setLeft(addedNode);
             }
             // else, left child was added
-            std::cout << "Makes it here 2" << std::endl;
+            // std::cout << "Makes it here 2" << std::endl;
             tempParent->setBalance(0);
             
 
