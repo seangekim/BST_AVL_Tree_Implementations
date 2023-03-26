@@ -561,6 +561,9 @@ void AVLTree<Key, Value>:: remove(const Key& key)
                     }
                    
                 }
+                if(child == nullptr){
+                    std::cout << "WRONG" << std::endl;
+                }
                 child->setParent(parent);
                 delete removed;
             }
