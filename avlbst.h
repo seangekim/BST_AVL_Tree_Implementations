@@ -530,7 +530,7 @@ void AVLTree<Key, Value>:: remove(const Key& key)
 
         // node has single children
         else{
-            AVLNode<Key, Value>* child = node;
+            AVLNode<Key, Value>* child = nullptr;
             
 
             // root case
@@ -543,9 +543,11 @@ void AVLTree<Key, Value>:: remove(const Key& key)
                 // has left child
                 if(removed->getRight() == nullptr){
                     if(parent->getLeft() == removed){
+                        child = parent->getLeft();
                         parent->setLeft(child);
                     }
                     else{
+                        child = parent->getRight();
                         parent->setRight(child);
                     }
                     
