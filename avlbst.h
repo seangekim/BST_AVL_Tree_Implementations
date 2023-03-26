@@ -530,44 +530,49 @@ void AVLTree<Key, Value>:: remove(const Key& key)
 
         // node has single children
         else{
-            AVLNode<Key, Value>* child = nullptr;
-            
-
             // root case
             if(parent == nullptr){
-                child->setParent(nullptr);
-                this->root_ = child;
-                delete removed;
+                // has left child
+                if(removed->getLeft() != nullptr){
+                    removed->getLeft()->setParent(nullptr);
+                    this->root_ = removed->getLeft();
+                    delete removed;
+                }
+                // has right child
+                else{
+                    removed->getRight()->setParent(nullptr);
+                    this->root_ = removed->getRight();
+                    delete removed;
+                }
+
             }
             else{
                 // has left child
                 if(removed->getRight() == nullptr){
                     if(parent->getLeft() == removed){
-                        child = parent->getLeft();
-                        parent->setLeft(child);
+                        parent->setLeft(removed->getLeft());
                     }
                     else{
-                        child = parent->getRight();
-                        parent->setRight(child);
+                        parent->setRight(removed->getLeft());
                     }
-                    
+                    removed->getLeft()->setParent(parent);
+                    delete removed;
                 }
                 
                 // has right child
                 else{
-                    if(parent->getRight() == removed){
-                        parent->setRight(child);
+                    if(parent->getLeft() == removed){
+                        parent->setLeft(removed->getRight());
                     }
                     else{
-                        parent->setLeft(child);
+                        parent->setRight(removed->getRight());
                     }
+                    removed->getRight()->setParent(parent);
+                    delete removed;
                    
                 }
-                if(child == nullptr){
-                    std::cout << "WRONG" << std::endl;
-                }
-                child->setParent(parent);
-                delete removed;
+               
+                
             }
         }
         removeFix(parent, diff);
