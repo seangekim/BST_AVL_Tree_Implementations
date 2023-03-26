@@ -530,7 +530,7 @@ void AVLTree<Key, Value>:: remove(const Key& key)
 
         // node has single children
         else{
-            AVLNode<Key, Value>* child = nullptr;
+            AVLNode<Key, Value>* child = node;
             
 
             // root case
