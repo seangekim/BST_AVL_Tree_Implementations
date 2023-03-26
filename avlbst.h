@@ -649,7 +649,7 @@ void AVLTree<Key, Value>::removeFix(AVLNode<Key,Value>* node, int diff) {
     }
     // diff == 2
     else if(node->getBalance() + diff == 2){
-        std::cout << "Enters diff = 2" < std::endl;
+        std::cout << "Enters diff = 2" << std::endl;
         if(child == nullptr){
             return;
         }
